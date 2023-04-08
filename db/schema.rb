@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_04_07_014656) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "expenses", force: :cascade do |t|
     t.string "name"
     t.text "description"
@@ -18,18 +21,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_014656) do
     t.date "due_date"
     t.boolean "recurring"
     t.string "recurring_frequency"
-    t.integer "group_id", null: false
+    t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "recurrence_frequency"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["group_id"], name: "index_expenses_on_group_id"
     t.index ["user_id"], name: "index_expenses_on_user_id"
   end
 
   create_table "group_members", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "group_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "group_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["group_id"], name: "index_group_members_on_group_id"
@@ -40,7 +43,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_07_014656) do
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.index ["user_id"], name: "index_groups_on_user_id"
   end
 
