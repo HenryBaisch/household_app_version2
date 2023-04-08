@@ -1,0 +1,35 @@
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <h1 class="my-4">Your Groups</h1>
+
+      <% if @groups.any? %>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @groups.each do |group| %>
+              <tr>
+                <td><%= group.name %></td>
+                <td>
+                  <%= link_to 'Show', group_path(group), class: 'btn btn-sm btn-info' %>
+                  <%= link_to 'Edit', edit_group_path(group), class: 'btn btn-sm btn-warning' %>
+                  <%= link_to 'Delete', group_path(group), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      <% else %>
+        <p class="alert alert-info">You have no groups. Create a new one!</p>
+      <% end %>
+
+      <%= link_to 'New Group', new_group_path, class: 'btn btn-primary' %>
+    </div>
+  </div>
+</div>

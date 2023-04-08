@@ -1,0 +1,28 @@
+<h1>Search Users</h1>
+
+<%= form_tag search_users_path, method: :get do %>
+  <%= text_field_tag :query, params[:query], placeholder: "Search by email" %>
+  <%= submit_tag 'Search', class: "btn btn-primary" %>
+<% end %>
+
+<table class="table mt-4">
+  <thead>
+    <tr>
+      <th>Email</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @users.each do |user| %>
+      <tr>
+        <td><%= user.email %></td>
+        <td>
+          <%= form_with(url: group_group_members_path(params[:group_id]), method: :post, local: true) do |form| %>
+            <%= form.hidden_field :user_id, value: user.id %>
+            <%= form.submit 'Add to Group', class: 'btn btn-primary' %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

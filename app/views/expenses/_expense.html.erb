@@ -1,0 +1,18 @@
+<div class="card mb-3">
+  <div class="card-header">
+    <strong><%= expense.name %></strong>
+  </div>
+  <div class="card-body">
+    <p><%= expense.description %></p>
+    <p>Amount: $<%= '%.2f' % expense.amount %></p>
+    <p>Due date: <%= expense.due_date.strftime('%Y-%m-%d') %></p>
+    <% if expense.recurring %>
+      <p>Recurring: <%= expense.recurrence_frequency %></p>
+    <% end %>
+  </div>
+  <div class="card-footer">
+    <%= link_to 'Show', group_expense_path(expense.group, expense), class: 'btn btn-sm btn-info' %>
+    <%= link_to 'Edit', edit_group_expense_path(expense.group, expense), class: 'btn btn-sm btn-warning' %>
+    <%= link_to 'Delete', group_expense_path(expense.group, expense), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-sm btn-danger' %>
+  </div>
+</div>
