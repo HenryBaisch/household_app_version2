@@ -1,48 +1,53 @@
 <h2 class="my-4">Add a New Expense</h2>
-
-<%= form_with(model: [group, expense], local: true) do |form| %>
-  <% if expense.errors.any? %>
-    <div class="alert alert-danger">
-      <h4><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h4>
-      <ul>
-        <% expense.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
+<div class="container">
+  <div class="row">
+    <div class="col-6 mx-auto">
+      <%= form_with(model: [group, expense], local: true) do |form| %>
+        <% if expense.errors.any? %>
+          <div class="alert alert-danger">
+            <h4><%= pluralize(expense.errors.count, "error") %> prohibited this expense from being saved:</h4>
+            <ul>
+              <% expense.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+            </ul>
+          </div>
         <% end %>
-      </ul>
+
+        <div class="form-group">
+          <%= form.label :name %>
+          <%= form.text_field :name, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :description %>
+          <%= form.text_area :description, class: 'form-control', rows: 3 %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :amount %>
+          <%= form.number_field :amount, class: 'form-control', step: '0.01' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :due_date %>
+          <%= form.date_field :due_date, class: 'form-control' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :recurring %>
+          <%= form.check_box :recurring, class: 'form-check-input' %>
+        </div>
+
+        <div class="form-group">
+          <%= form.label :recurrence_frequency %>
+          <%= form.select :recurrence_frequency, options_for_select(['Daily', 'Weekly', 'Monthly', 'Yearly']), { include_blank: 'Select frequency' }, class: 'form-select' %>
+        </div>
+
+        <div class="form-group my-3">
+          <%= form.submit 'Create Expense', class: 'btn btn-primary' %>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-
-  <div class="form-group">
-    <%= form.label :name %>
-    <%= form.text_field :name, class: 'form-control' %>
   </div>
-
-  <div class="form-group">
-    <%= form.label :description %>
-    <%= form.text_area :description, class: 'form-control', rows: 3 %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :amount %>
-    <%= form.number_field :amount, class: 'form-control', step: '0.01' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :due_date %>
-    <%= form.date_field :due_date, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :recurring %>
-    <%= form.check_box :recurring, class: 'form-check-input' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :recurrence_frequency %>
-    <%= form.select :recurrence_frequency, options_for_select(['Daily', 'Weekly', 'Monthly', 'Yearly']), { include_blank: 'Select frequency' }, class: 'form-select' %>
-  </div>
-
-  <div class="form-group my-3">
-    <%= form.submit 'Create Expense', class: 'btn btn-primary' %>
-  </div>
-<% end %>
+</div>
