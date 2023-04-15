@@ -4,9 +4,7 @@ class RestaurantsController < ApplicationController
     end
 
     def nearby_restaurants
-
-      
-        @restaurants = YelpApiClient.search_nearby_restaurants(latitude, longitude, radius)
+        @restaurants = YelpApiClient.search_nearby_restaurants_with_reviews(params[:latitude], params[:longitude], params[:radius])
     end
       
 end
