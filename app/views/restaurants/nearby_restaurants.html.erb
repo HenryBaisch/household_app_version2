@@ -1,0 +1,8 @@
+<!-- app/views/restaurants/nearby_restaurants.html.erb -->
+<h1>Nearby Restaurants</h1>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li><%= restaurant['name'] %></li>
+  <% end %>
+</ul>
