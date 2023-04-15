@@ -1,0 +1,13 @@
+<!-- app/views/restaurants/nearby_restaurants.html.erb -->
+<h1>Nearby Restaurants</h1>
+
+<ul>
+  <% @restaurants.each do |restaurant| %>
+    <li>
+      <h2><%= restaurant['name'] %></h2>
+      <img src="<%= restaurant['image_url'] %>" alt="<%= restaurant['name'] %>" style="width: 200px;">
+      <p><%= restaurant['categories'].map { |category| category['title'] }.join(', ') %></p>
+      <p>Rating: <%= restaurant['rating'] %></p>
+    </li>
+  <% end %>
+</ul>

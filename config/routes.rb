@@ -9,6 +9,8 @@ Rails.application.routes.draw do
   get 'groups/edit'
   get 'home/index'
   get 'search/users', to: 'search#users', as: 'search_users'
+  get 'nearby_restaurants', to: 'restaurants#nearby_restaurants'
+  get 'search', to: 'restaurants#search'
   devise_for :users
   root 'groups#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
