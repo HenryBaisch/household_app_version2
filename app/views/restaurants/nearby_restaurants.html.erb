@@ -3,6 +3,11 @@
 
 <ul>
   <% @restaurants.each do |restaurant| %>
-    <li><%= restaurant['name'] %></li>
+    <li>
+      <h2><%= restaurant['name'] %></h2>
+      <img src="<%= restaurant['image_url'] %>" alt="<%= restaurant['name'] %>" style="width: 200px;">
+      <p><%= restaurant['categories'].map { |category| category['title'] }.join(', ') %></p>
+      <p>Rating: <%= restaurant['rating'] %></p>
+    </li>
   <% end %>
 </ul>
